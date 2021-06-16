@@ -9,7 +9,7 @@ if (isActionAccessible($guid, $connection2,"/modules/House Points/category.php")
 
     $page->breadcrumbs->add(__('Categories'));
     
-    $modpath =  "./modules/".$_SESSION[$guid]["module"];
+    $modpath =  "./modules/".$session->get('module');
     include $modpath."/function.php";
     include $modpath."/category_function.php";
     

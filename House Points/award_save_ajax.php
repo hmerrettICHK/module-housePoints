@@ -12,7 +12,7 @@ $studentID = $formData['studentID'];
 $categoryID = $formData['categoryID'];
 $points = $formData['points'];
 $reason = $formData['reason'];
-$yearID = $_SESSION[$guid]['gibbonSchoolYearID'];
+$yearID = $session->get('gibbonSchoolYearID');
 
 $msg = '';
 if ($studentID == 0) {

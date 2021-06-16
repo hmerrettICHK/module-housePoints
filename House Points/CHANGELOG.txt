@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+## v1.4.01
+- Refactoring session variables
+
 ## v1.4.00
 - Form Group Terminology
 

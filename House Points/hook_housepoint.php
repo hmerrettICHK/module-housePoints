@@ -8,9 +8,9 @@ if (isActionAccessible($guid, $connection2, '/modules/House Points/overall.php')
 
 } else {
 */
-    $yearID = $_SESSION[$guid]['gibbonSchoolYearID'];
+    $yearID = $session->get('gibbonSchoolYearID');
     $pointsList = readPointsList($connection2, $yearID);
-    
+
     $hook = "";
     $hook .= "<p>&nbsp;</p>";
     $hook .= "<h3>Overall House Points</h3>";
@@ -25,7 +25,7 @@ if (isActionAccessible($guid, $connection2, '/modules/House Points/overall.php')
             $hook .= "<tr>";
                 $hook .= "<td class='textCenter'>";
                 if (!empty($row['houseLogo'])) {
-                    $hook .= sprintf('<img src="%1$s" title="%2$s" style="width:auto;height:80px;">', $_SESSION[$guid]['absoluteURL'].'/'.$row['houseLogo'], $row['houseName'] );
+                    $hook .= sprintf('<img src="%1$s" title="%2$s" style="width:auto;height:80px;">', $session->get('absoluteURL').'/'.$row['houseLogo'], $row['houseName'] );
                 }
                 $hook .= "</td>";
                 $hook .= "<td>".$row['houseName']."</td>";
@@ -36,16 +36,16 @@ if (isActionAccessible($guid, $connection2, '/modules/House Points/overall.php')
     return $hook;
 //}
 
-     
+
 function readMyPoints($dbh, $studentID, $yearID) {
     $data = array(
         'studentID' => $studentID,
         'yearID' => $yearID
     );
-    $sql = "SELECT  
-        hpPointStudent.points, 
+    $sql = "SELECT
+        hpPointStudent.points,
         CONCAT(LEFT(gibbonPerson.preferredName,1), '.', gibbonPerson.surname) AS teacherName,
-        hpPointStudent.awardedDate, 
+        hpPointStudent.awardedDate,
         hpCategory.categoryName
         FROM hpPointStudent
         INNER JOIN hpCategory
@@ -59,7 +59,7 @@ function readMyPoints($dbh, $studentID, $yearID) {
     $rs->execute($data);
     return $rs;
 }
-    
+
 function readPointsList($dbh, $yearID) {
     $data = array(
         'yearID' => $yearID
@@ -69,7 +69,7 @@ function readPointsList($dbh, $yearID) {
         gibbonHouse.logo as houseLogo,
         COALESCE(pointStudent.total + pointHouse.total, pointStudent.total, pointHouse.total, 0) AS total
         FROM gibbonHouse
-        LEFT JOIN 
+        LEFT JOIN
         (
             SELECT gibbonPerson.gibbonHouseID AS houseID,
             SUM(hpPointStudent.points) AS total
@@ -81,7 +81,7 @@ function readPointsList($dbh, $yearID) {
 
         ) AS pointStudent
         ON pointStudent.houseID = gibbonHouse.gibbonHouseID
-        LEFT JOIN 
+        LEFT JOIN
         (
             SELECT hpPointHouse.houseID,
             SUM(hpPointHouse.points) AS total
@@ -96,5 +96,3 @@ function readPointsList($dbh, $yearID) {
     $rs->execute($data);
     return $rs;
 }
-
-    

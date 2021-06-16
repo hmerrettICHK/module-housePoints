@@ -5,8 +5,8 @@ class over {
         $this->dbh = $connection2;
         $this->guid = $guid;
         
-        $this->yearID = $_SESSION[$guid]['gibbonSchoolYearID'];
-        $this->teacherID = $_SESSION[$guid]['gibbonPersonID'];
+        $this->yearID = $session->get('gibbonSchoolYearID');
+        $this->teacherID = $session->get('gibbonPersonID');
         
         if (isset($_POST['submit'])) {
             $this->awardSave();

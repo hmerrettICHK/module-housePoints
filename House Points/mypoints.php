@@ -9,14 +9,14 @@ if (isActionAccessible($guid, $connection2,"/modules/House Points/mypoints.php")
     
     $page->breadcrumbs->add(__('My points'));
 
-    $modpath =  "./modules/".$_SESSION[$guid]["module"];
+    $modpath =  "./modules/".$session->get('module');
     include $modpath."/function.php";
     include $modpath."/mypoints_function.php";
    
     ?>
     <script>
         var modpath = '<?php echo $modpath ?>';
-        var studentID = '<?php echo $_SESSION[$guid]['gibbonPersonID'] ?>';
+        var studentID = '<?php echo $session->get('gibbonPersonID') ?>';
     </script>
     <?php
     

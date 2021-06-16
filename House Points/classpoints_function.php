@@ -5,7 +5,7 @@ class cls {
         $this->dbh = $connection2;
         $this->guid = $guid;
         
-        $this->yearID = $_SESSION[$guid]['gibbonSchoolYearID'];
+        $this->yearID = $session->get('gibbonSchoolYearID');
         
         $this->classList = $this->readClassList();
         $this->studentList = readStudentList($this->dbh, $this->yearID);

@@ -9,7 +9,7 @@ if (isActionAccessible($guid, $connection2,"/modules/House Points/award.php")==F
 
     $page->breadcrumbs->add(__('Award student points'));
     
-    $modpath =  "./modules/".$_SESSION[$guid]["module"];
+    $modpath =  "./modules/".$session->get('module');
     include $modpath."/function.php";
     include $modpath."/award_function.php";
    

@@ -7,8 +7,8 @@ class pt {
         $this->dbh = $connection2;
         $this->guid = $guid;
         
-        $this->yearID = $_SESSION[$guid]['gibbonSchoolYearID'];
-        $this->teacherID = $_SESSION[$guid]['gibbonPersonID'];
+        $this->yearID = $session->get('gibbonSchoolYearID');
+        $this->teacherID = $session->get('gibbonPersonID');
         
         $this->houseList = readHouseList($this->dbh);
         $this->categoryList = readCategoryList($this->dbh, 'House');

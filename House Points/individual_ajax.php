@@ -7,7 +7,7 @@ $studentID = $_POST['studentID'];
 
 $data = array(
     'studentID' => $studentID,
-    'yearID' => $_SESSION[$guid]['gibbonSchoolYearID']
+    'yearID' => $session->get('gibbonSchoolYearID')
 );
 $sql = "SELECT hpPointStudent.hpID,
     DATE_FORMAT(hpPointStudent.awardedDate, '%d/%m/%Y') AS awardedDate,
